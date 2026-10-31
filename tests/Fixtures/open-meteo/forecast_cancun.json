@@ -1,0 +1,35 @@
+{
+    "latitude": 21.16,
+    "longitude": -86.85,
+    "generationtime_ms": 0.123,
+    "utc_offset_seconds": -18000,
+    "timezone": "America/Cancun",
+    "timezone_abbreviation": "EST",
+    "elevation": 10.0,
+    "hourly_units": {
+        "time": "iso8601",
+        "temperature_2m": "°C",
+        "apparent_temperature": "°C",
+        "precipitation_probability": "%",
+        "precipitation": "mm",
+        "wind_speed_10m": "km/h",
+        "wind_gusts_10m": "km/h",
+        "uv_index": "",
+        "weather_code": "wmo code"
+    },
+    "hourly": {
+        "time": [
+            "2026-07-01T14:00",
+            "2026-07-01T15:00",
+            "2026-07-01T16:00"
+        ],
+        "temperature_2m": [30.1, 31.5, 33.0],
+        "apparent_temperature": [34.0, 36.0, 38.5],
+        "precipitation_probability": [10, 20, 70],
+        "precipitation": [0.0, 0.0, 1.2],
+        "wind_speed_10m": [12.0, 15.0, 40.0],
+        "wind_gusts_10m": [20.0, 25.0, 55.0],
+        "uv_index": [7.0, 8.0, 9.0],
+        "weather_code": [1, 2, 95]
+    }
+}

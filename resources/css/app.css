@@ -1,0 +1,583 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../js/**/*.jsx';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Space Grotesk', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    body {
+        @apply bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-200;
+    }
+
+    ::selection {
+        @apply bg-indigo-500/25;
+    }
+}
+
+@layer components {
+    .app-bg {
+        @apply pointer-events-none fixed inset-0 -z-10 bg-gradient-to-br from-indigo-50 via-slate-50 to-sky-50 dark:from-slate-950 dark:via-slate-950 dark:to-indigo-950/40;
+    }
+
+    .glass-card {
+        @apply rounded-2xl border border-slate-200/70 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/50;
+    }
+
+    .glass-soft {
+        @apply rounded-xl border border-slate-200/60 bg-white/50 backdrop-blur-md dark:border-white/10 dark:bg-white/5;
+    }
+
+    .glass-inset {
+        @apply rounded-xl border border-slate-200/60 bg-slate-50/70 dark:border-white/10 dark:bg-white/5;
+    }
+
+    .panel-title {
+        @apply text-sm font-semibold text-slate-800 dark:text-slate-100;
+    }
+
+    .text-muted {
+        @apply text-slate-500 dark:text-slate-400;
+    }
+
+    .heading {
+        @apply text-slate-900 dark:text-white;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-indigo-500 hover:shadow-[0_10px_30px_-10px_rgba(79,70,229,0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:focus-visible:ring-offset-slate-950;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white/70 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2 rounded-xl border border-red-300 px-4 py-2 text-sm font-medium text-red-700 transition hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-500/10;
+    }
+
+    .field-input {
+        @apply w-full rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-sm text-slate-900 shadow-sm transition placeholder:text-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 dark:border-white/15 dark:bg-slate-900/60 dark:text-slate-100 dark:placeholder:text-slate-500;
+    }
+
+    .field-label {
+        @apply block text-sm font-medium text-slate-700 dark:text-slate-300;
+    }
+
+    .nav-link {
+        @apply flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-900/5 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white;
+    }
+
+    .nav-link-active {
+        @apply text-indigo-700 dark:text-indigo-300;
+    }
+
+    .table-shell {
+        @apply overflow-hidden rounded-2xl border border-slate-200/70 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/50;
+    }
+
+    .table-head {
+        @apply bg-slate-50/80 text-left text-xs uppercase tracking-wide text-slate-500 dark:bg-white/5 dark:text-slate-400;
+    }
+
+    .table-row {
+        @apply hover:bg-slate-50/70 dark:hover:bg-white/5;
+    }
+}
+
+/* FullCalendar: adaptación al tema oscuro */
+.dark .fc-theme-app {
+    --fc-border-color: rgba(255, 255, 255, 0.12);
+    --fc-page-bg-color: transparent;
+    --fc-neutral-bg-color: rgba(255, 255, 255, 0.06);
+    --fc-neutral-text-color: #cbd5e1;
+    --fc-today-bg-color: rgba(99, 102, 241, 0.12);
+    --fc-now-indicator-color: #f43f5e;
+    --fc-button-bg-color: rgba(255, 255, 255, 0.06);
+    --fc-button-border-color: rgba(255, 255, 255, 0.15);
+    --fc-button-text-color: #e2e8f0;
+    --fc-button-hover-bg-color: rgba(255, 255, 255, 0.12);
+    --fc-button-hover-border-color: rgba(255, 255, 255, 0.2);
+    --fc-button-active-bg-color: #4f46e5;
+    --fc-button-active-border-color: #4f46e5;
+}
+
+.fc-theme-app {
+    --fc-border-color: rgba(100, 116, 139, 0.2);
+    --fc-button-bg-color: #ffffff;
+    --fc-button-border-color: #cbd5e1;
+    --fc-button-text-color: #334155;
+    --fc-button-hover-bg-color: #f1f5f9;
+    --fc-button-active-bg-color: #4f46e5;
+    --fc-button-active-border-color: #4f46e5;
+    --fc-button-active-text-color: #ffffff;
+}
+
+.fc-theme-app .fc-toolbar-title {
+    @apply text-base font-semibold;
+}
+
+/* ============================================================
+   ClimaQuest · capa futurista
+   Utilidades de profundidad, iluminación y motion.
+   Todas las animaciones se desactivan con prefers-reduced-motion.
+   ============================================================ */
+
+@layer components {
+    .font-display {
+        font-family: var(--font-display);
+        letter-spacing: -0.02em;
+    }
+
+    /* Texto con degradado (cuidando el contraste en ambos temas) */
+    .text-gradient {
+        @apply bg-gradient-to-r from-indigo-600 via-sky-500 to-violet-500 bg-clip-text text-transparent dark:from-indigo-300 dark:via-sky-300 dark:to-violet-300;
+    }
+
+    /* Rejilla técnica de fondo */
+    .grid-overlay {
+        background-image:
+            linear-gradient(to right, rgba(99, 102, 241, 0.12) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    }
+
+    /* Orbes de luz tipo aurora */
+    .aurora-blob {
+        @apply pointer-events-none absolute rounded-full blur-3xl;
+        opacity: 0.5;
+    }
+
+    /* Tarjetas con borde luminoso y profundidad */
+    .glass-glow {
+        @apply rounded-2xl border border-white/60 bg-white/70 shadow-[0_8px_40px_-12px_rgba(79,70,229,0.35)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/50 dark:shadow-[0_8px_40px_-12px_rgba(99,102,241,0.45)];
+    }
+
+    /* Elevación al interactuar (profundidad coherente) */
+    .lift {
+        transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 240ms ease;
+        will-change: transform;
+    }
+
+    .lift:hover {
+        transform: translateY(-4px);
+    }
+
+    /* Separador con degradado */
+    .divider-glow {
+        @apply h-px w-full bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent;
+    }
+}
+
+/* Estado inicial para reveals accionados por JS (Motion / GSAP).
+   Si JS no carga o el usuario prefiere menos motion, se muestran visibles. */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(22px);
+}
+
+[data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cq-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+
+@keyframes cq-aurora-pan {
+    0% { transform: translate3d(-6%, -4%, 0) scale(1); }
+    50% { transform: translate3d(6%, 5%, 0) scale(1.15); }
+    100% { transform: translate3d(-6%, -4%, 0) scale(1); }
+}
+
+@keyframes cq-pulse-glow {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+}
+
+@keyframes cq-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes cq-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.enter-up {
+    animation: cq-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float {
+    animation: cq-float 7s ease-in-out infinite;
+}
+
+.animate-aurora {
+    animation: cq-aurora-pan 18s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: cq-pulse-glow 3.5s ease-in-out infinite;
+}
+
+.shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    background-size: 200% 100%;
+    animation: cq-shimmer 2.4s linear infinite;
+}
+
+/* ============================================================
+   ClimaQuest · fondo animado por clima
+   Capa fija detrás del contenido; la familia visual se controla con
+   [data-weather] y [data-period] sobre .weather-scene.
+   ============================================================ */
+
+@layer components {
+    /* Tarjetas algo más translúcidas cuando hay fondo animado detrás. */
+    .has-weather-bg .glass-card {
+        @apply bg-white/55 dark:bg-slate-900/40;
+    }
+
+    .has-weather-bg .glass-glow {
+        @apply bg-white/55 dark:bg-slate-900/40;
+    }
+
+    .has-weather-bg .glass-soft {
+        @apply bg-white/40 dark:bg-white/[0.04];
+    }
+
+    .has-weather-bg .table-shell {
+        @apply bg-white/55 dark:bg-slate-900/40;
+    }
+}
+
+.has-weather-bg .app-bg {
+    opacity: 0;
+    transition: opacity 700ms ease;
+}
+
+.weather-scene {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+    animation: cq-scene-in 1000ms ease both;
+}
+
+/* Velo oscuro global para el tema oscuro (atenuación cohesiva). */
+.dark .weather-scene::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.55);
+}
+
+.weather-scene__sky {
+    position: absolute;
+    inset: 0;
+}
+
+.weather-scene[data-period='day'] .weather-scene__sky {
+    background: linear-gradient(160deg, #cfe9ff 0%, #e8f4ff 45%, #fff3e0 100%);
+}
+
+.weather-scene[data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #0b1226 0%, #131c3a 50%, #1b2a4a 100%);
+}
+
+.weather-scene[data-weather='partly'][data-period='day'] .weather-scene__sky {
+    background: linear-gradient(160deg, #bcd9f2 0%, #dceaf6 50%, #f7efe2 100%);
+}
+
+.weather-scene[data-weather='cloudy'] .weather-scene__sky {
+    background: linear-gradient(160deg, #aab9c9 0%, #cbd6e1 55%, #e6ecf1 100%);
+}
+
+.weather-scene[data-weather='cloudy'][data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #0d1322 0%, #1a2233 60%, #232d42 100%);
+}
+
+.weather-scene[data-weather='drizzle'] .weather-scene__sky,
+.weather-scene[data-weather='rain'] .weather-scene__sky {
+    background: linear-gradient(160deg, #7f93a8 0%, #9fb0c2 55%, #c4d0da 100%);
+}
+
+.weather-scene[data-weather='drizzle'][data-period='night'] .weather-scene__sky,
+.weather-scene[data-weather='rain'][data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #0a1020 0%, #141b2c 60%, #1d2638 100%);
+}
+
+.weather-scene[data-weather='storm'] .weather-scene__sky {
+    background: linear-gradient(160deg, #4b5566 0%, #6b7688 55%, #8b95a5 100%);
+}
+
+.weather-scene[data-weather='storm'][data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #060a14 0%, #0f1524 60%, #171e30 100%);
+}
+
+.weather-scene[data-weather='snow'] .weather-scene__sky {
+    background: linear-gradient(160deg, #d7e3ef 0%, #eef4fa 55%, #ffffff 100%);
+}
+
+.weather-scene[data-weather='snow'][data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #101a2b 0%, #1c2740 60%, #2a3752 100%);
+}
+
+.weather-scene[data-weather='fog'] .weather-scene__sky {
+    background: linear-gradient(160deg, #c3ccd6 0%, #dbe2e9 55%, #eef1f5 100%);
+}
+
+.weather-scene[data-weather='fog'][data-period='night'] .weather-scene__sky {
+    background: linear-gradient(160deg, #111722 0%, #1c2533 60%, #27313f 100%);
+}
+
+.weather-scene__sun {
+    position: absolute;
+    top: 6%;
+    right: 10%;
+    width: 220px;
+    height: 220px;
+}
+
+.weather-scene__sun-core {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 104px;
+    height: 104px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, #fff8dd 0%, #ffe08a 45%, #ffcf4d 68%, rgba(255, 207, 77, 0) 72%);
+}
+
+.weather-scene__sun-glow {
+    position: absolute;
+    inset: -50px;
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255, 214, 102, 0.55) 0%, rgba(255, 214, 102, 0) 65%);
+    animation: cq-pulse-glow 6s ease-in-out infinite;
+}
+
+.weather-scene__moon {
+    display: none;
+    position: absolute;
+    top: 8%;
+    right: 12%;
+    width: 90px;
+    height: 90px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 35%, #f8fafc 0%, #dbe4f0 60%, #aab8cc 100%);
+    box-shadow: 0 0 70px 18px rgba(203, 225, 255, 0.35);
+}
+
+.weather-scene[data-period='night'][data-weather='clear'] .weather-scene__moon,
+.weather-scene[data-period='night'][data-weather='partly'] .weather-scene__moon {
+    display: block;
+}
+
+.weather-scene__cloud {
+    position: absolute;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.85);
+    filter: blur(26px);
+}
+
+.dark .weather-scene__cloud {
+    background: rgba(148, 163, 184, 0.35);
+}
+
+.weather-scene__cloud--a {
+    top: 14%;
+    width: 280px;
+    height: 90px;
+    animation: cq-cloud-drift 62s linear infinite;
+}
+
+.weather-scene__cloud--b {
+    top: 26%;
+    width: 200px;
+    height: 70px;
+    opacity: 0.7;
+    animation: cq-cloud-drift 84s linear infinite;
+    animation-delay: -22s;
+}
+
+.weather-scene__cloud--c {
+    top: 5%;
+    width: 340px;
+    height: 110px;
+    opacity: 0.5;
+    animation: cq-cloud-drift 98s linear infinite;
+    animation-delay: -48s;
+}
+
+.weather-scene__stars {
+    position: absolute;
+    inset: 0;
+}
+
+.weather-scene__star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 9999px;
+    background: #fff;
+    animation: cq-twinkle 3s ease-in-out infinite;
+}
+
+.weather-scene__rain,
+.weather-scene__snow {
+    position: absolute;
+    inset: 0;
+}
+
+.weather-scene__drop {
+    position: absolute;
+    top: -12%;
+    width: 1.5px;
+    height: 84px;
+    border-radius: 9999px;
+    background: linear-gradient(to bottom, rgba(203, 225, 255, 0), rgba(203, 225, 255, 0.75));
+    animation: cq-rain-fall linear infinite;
+}
+
+.weather-scene[data-weather='drizzle'] .weather-scene__drop {
+    height: 42px;
+    opacity: 0.5;
+}
+
+.weather-scene[data-weather='storm'] .weather-scene__drop {
+    background: linear-gradient(to bottom, rgba(203, 225, 255, 0), rgba(226, 232, 240, 0.9));
+}
+
+.weather-scene__flake {
+    position: absolute;
+    top: -5%;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.9);
+    animation: cq-snow-fall linear infinite;
+}
+
+.weather-scene__fog {
+    position: absolute;
+    left: -20%;
+    width: 140%;
+    height: 42%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    filter: blur(30px);
+    animation: cq-fog-drift 60s ease-in-out infinite alternate;
+}
+
+.weather-scene__fog--b {
+    top: 55%;
+    animation-duration: 82s;
+}
+
+.weather-scene__fog--a {
+    top: 18%;
+}
+
+.weather-scene__lightning {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.92);
+    opacity: 0;
+    animation: cq-flash 8s linear infinite;
+}
+
+@keyframes cq-scene-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes cq-cloud-drift {
+    from { transform: translateX(-40vw); }
+    to { transform: translateX(130vw); }
+}
+
+@keyframes cq-twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 1; }
+}
+
+@keyframes cq-rain-fall {
+    from { transform: translate3d(0, -20vh, 0) rotate(12deg); }
+    to { transform: translate3d(var(--drift, 0px), 120vh, 0) rotate(12deg); }
+}
+
+@keyframes cq-snow-fall {
+    from { transform: translate3d(0, -10vh, 0); }
+    50% { transform: translate3d(calc(var(--drift, 0px) / 2), 55vh, 0); }
+    to { transform: translate3d(var(--drift, 0px), 115vh, 0); }
+}
+
+@keyframes cq-fog-drift {
+    from { transform: translateX(-6%); }
+    to { transform: translateX(6%); }
+}
+
+@keyframes cq-flash {
+    0%, 90%, 100% { opacity: 0; }
+    91% { opacity: 0.5; }
+    92% { opacity: 0; }
+    93% { opacity: 0.85; }
+    94% { opacity: 0; }
+    95% { opacity: 0.4; }
+    96% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .lift:hover {
+        transform: none;
+    }
+
+    .weather-scene__drop,
+    .weather-scene__flake,
+    .weather-scene__star,
+    .weather-scene__lightning {
+        display: none !important;
+    }
+
+    .weather-scene__sun-glow,
+    .weather-scene__cloud,
+    .weather-scene__fog {
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+
