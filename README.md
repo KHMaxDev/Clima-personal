@@ -17,8 +17,6 @@ Pantallas públicas de la aplicación ejecutada localmente, sin datos personales
 
 ![Inicio de sesión](docs/images/login.png)
 
-El logo SVG reproduce la identidad tipográfica de la aplicación. La imagen previa `docs/dashboard.jpg` muestra otra marca (Wyndo), por lo que no se presenta como captura de ClimaQuest.
-
 ## Interfaces
 
 | Pantalla | Funciones |
