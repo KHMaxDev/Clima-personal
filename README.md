@@ -1,58 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><img src="docs/images/climaquest.svg" width="420" alt="ClimaQuest"></p>
+<p align="center"><strong>Decide con el clima a tu favor.</strong><br>Planifica actividades al aire libre con pronóstico, reglas explicables y asistencia opcional con IA.</p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## El proyecto
 
-## About Laravel
+ClimaQuest conecta una pregunta cotidiana —«¿cuándo conviene salir?»— con el lugar, horario y tipo de actividad de cada persona. Combina datos de Open-Meteo con un motor determinista para mostrar condiciones favorables, precauciones, riesgos o falta de información.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Está pensado para quienes corren, practican ciclismo, hacen senderismo, planean un día de playa o picnic, viajan o realizan fotografía exterior. Aborda tres problemas: consultar el clima separado de la agenda, interpretar variables sin contexto y reorganizar planes sin comparar alternativas horarias.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Como proyecto de portafolio, muestra una aplicación full stack con autenticación, recursos por usuario, integración de servicios externos, reglas reproducibles y componentes React integrados en vistas Blade.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Capturas
 
-## Learning Laravel
+Pantallas públicas de la aplicación ejecutada localmente, sin datos personales.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Presentación de ClimaQuest](docs/images/inicio.png)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Inicio de sesión](docs/images/login.png)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+El logo SVG reproduce la identidad tipográfica de la aplicación. La imagen previa `docs/dashboard.jpg` muestra otra marca (Wyndo), por lo que no se presenta como captura de ClimaQuest.
 
-## Agentic Development
+## Interfaces
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+| Pantalla | Funciones |
+| --- | --- |
+| Presentación | Explica la propuesta y permite acceder al registro o inicio de sesión. |
+| Registro y acceso | Crea una cuenta e inicia una sesión personal. |
+| Inicio / dashboard | Muestra el resumen meteorológico, la próxima actividad y recomendaciones. |
+| Calendario | Organiza visualmente las actividades personales mediante FullCalendar. |
+| Mis actividades | Permite consultar, crear, editar y eliminar actividades propias. |
+| Nueva actividad | Define categoría, ubicación y horario; ofrece un generador para interpretar una solicitud y revisar propuestas antes de guardarlas. |
+| Detalle | Presenta la evaluación, sus motivos y alternativas horarias. |
+| Pronóstico | Consulta condiciones y detalle por horas: temperatura, sensación térmica, lluvia, viento y UV. |
+| Historial | Lista evaluaciones anteriores, ordenadas por fecha y paginadas. |
+| Asistente IA | Genera explicaciones, recomendaciones y precauciones para una actividad, con fuentes cuando estén disponibles. |
 
-```bash
-composer require laravel/boost --dev
+La interfaz incorpora temas claro y oscuro, búsqueda de ubicaciones y animaciones que contemplan la preferencia de movimiento reducido.
 
-php artisan boost:install
+## Propuesta y alcance de la demo
+
+**Propuesta del producto:** reunir agenda, clima y orientación contextual para ayudar a elegir cuándo realizar actividades al aire libre.
+
+**Implementado:** autenticación por sesión, gestión de actividades por usuario, calendario, integración meteorológica, evaluación mediante reglas, alternativas, historial y asistencia contextual. Es una aplicación con backend Laravel y PostgreSQL; el repositorio no documenta un despliegue público.
+
+**Opcional y dependiente de configuración:** OpenRouter necesita una clave para generar respuestas con un modelo. El asistente ofrece explicaciones deterministas cuando la IA no está configurada o falla. La recuperación de conocimiento (RAG) viene desactivada y requiere documentos aprobados; los embeddings y pgvector son opcionales y existe búsqueda por palabras clave. Open-Meteo requiere conectividad.
+
+**Límites:** Configuración aparece como próxima función. El modelo de notificaciones no representa por sí solo un sistema terminado de alertas programadas. Los anexos describen objetivos y decisiones de diseño, no garantizan que todo esté implementado. La evaluación depende de la cobertura del pronóstico y no sustituye avisos oficiales ni garantiza condiciones seguras.
+
+<details>
+<summary><strong>Tecnologías y arquitectura</strong></summary>
+
+| Capa | Tecnologías |
+| --- | --- |
+| Backend | PHP, Laravel 13, Eloquent, Blade y sesiones. |
+| Frontend | React 19, Tailwind CSS 4, Vite 8 y Lucide. |
+| Agenda y animación | FullCalendar 6, GSAP y Motion. |
+| Persistencia | PostgreSQL, JSONB, snapshots y evaluaciones almacenadas. |
+| Integraciones | Open-Meteo, OpenRouter y embeddings configurables. |
+| Conocimiento | Markdown, búsqueda por palabras clave y pgvector opcional. |
+| Desarrollo y calidad | PHPUnit 12, Laravel Pint y Laravel Boost. |
+
+Las [rutas](routes/web.php) conectan controladores con servicios de [meteorología](app/Services/Weather), [evaluación](app/Services/Assessment) e [IA](app/Services/Ai). Los [componentes React](resources/js/components) se montan en [vistas Blade](resources/views).
+
+Las reglas determinan el estado de una actividad; la IA aporta explicaciones. Esta separación conserva la evaluación reproducible y permite funcionar sin configurar un modelo.
+
+</details>
+
+<details>
+<summary><strong>Instalación local</strong></summary>
+
+### Requisitos
+
+- PHP 8.4 o superior compatible con el lockfile y Composer 2. El manifiesto declara PHP `^8.3`, pero las dependencias bloqueadas requieren una versión más reciente.
+- Node.js 22.12+ o 24 y npm.
+- PostgreSQL y la extensión PHP `pdo_pgsql`. Las migraciones usan SQL específico; SQLite no sustituye este requisito.
+- Internet para instalar dependencias, descargar fuentes durante la compilación y consultar servicios externos.
+
+Desde la raíz del repositorio:
+
+```sh
+composer install
+php -r "file_exists('.env') || copy('.env.example', '.env');"
+php artisan key:generate
+npm ci --ignore-scripts
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Crea una base vacía `climaquest` y ajusta las variables `DB_*` en `.env` según [.env.example](.env.example). Conserva `DB_CONNECTION=pgsql`.
 
-## Contributing
+```sh
+php artisan migrate
+php artisan db:seed --class=ActivityCategorySeeder
+php artisan db:seed --class=ActivityRuleSeeder
+npm run build
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Abre la dirección indicada por Artisan y crea una cuenta desde Registro. Estos seeders cargan categorías y reglas, sin necesitar una cuenta compartida. Para desarrollo con recarga automática, ejecuta `npm run dev` en otra terminal.
 
-## Code of Conduct
+### IA y conocimiento opcionales
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Configura `OPENROUTER_API_KEY` y, si corresponde, `OPENROUTER_MODEL` en `.env`. Las claves permanecen en el servidor. Para RAG, revisa [docs/knowledge](docs/knowledge), activa `RAG_ENABLED=true` e ingiere los documentos que apruebes:
 
-## Security Vulnerabilities
+```sh
+php artisan rag:ingest docs/knowledge --approve
+php artisan config:clear
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Sin embeddings se usa coincidencia por palabras clave. Para búsqueda vectorial, prepara pgvector antes de migrar y configura `EMBEDDINGS_*`; la columna actual usa 1536 dimensiones. La migración omite la parte vectorial si la extensión no está disponible.
 
-## License
+</details>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<details>
+<summary><strong>Pruebas</strong></summary>
+
+La suite utiliza **PHPUnit**, aunque los anexos propongan Pest. [phpunit.xml](phpunit.xml) separa pruebas unitarias y funcionales y configura PostgreSQL con la base `climaquest_test`.
+
+```sh
+php artisan test --testsuite=Unit
+```
+
+Para la suite completa, crea una base exclusiva `climaquest_test` y configura sus credenciales y una `APP_KEY` válida en `.env.testing`. Las pruebas con `RefreshDatabase` recrean tablas: utiliza una base separada.
+
+```sh
+composer test
+npm run build
+```
+
+Las [pruebas unitarias](tests/Unit) cubren agregación meteorológica, reglas y expansión de horarios. Las [funcionales](tests/Feature) cubren autenticación, autorización, CRUD, dashboard, integración meteorológica, generación de actividades, asistente e ingesta de conocimiento. Se incluyen respuestas HTTP simuladas y [fixtures](tests/Fixtures/open-meteo).
+
+Estos comandos explican cómo verificar el proyecto; no certifican una cobertura concreta ni el éxito de la suite completa en todos los entornos.
+
+</details>
+
+<details>
+<summary><strong>Documentación del diseño</strong></summary>
+
+- [Anexo técnico v1.1](docs/ClimaQuest_Anexo_Tecnico_v1.1.md).
+- [Anexo técnico v1.2](docs/ClimaQuest_Anexo_Tecnico_v1.2.md).
+- [Base de conocimiento](docs/knowledge).
+
+Los anexos explican la intención del producto. Para conocer el alcance ejecutable, consulta el código, las rutas y las pruebas de esta versión.
+
+</details>
